@@ -15,9 +15,20 @@ let items = distribution.values.map(v => { return {
 
 let proof = merkleTree.proof(items, account, utils.EulTokenAddr)
 
-console.log({
-    account,
-    token: utils.EulTokenAddr,
-    claimable: proof.item.claimable.toString(),
-    proof: proof.witnesses,
-});
+console.log(`
+How to claim EUL via etherscan:
+
+Visit: https://etherscan.io/address/0xd524E29E3BAF5BB085403Ca5665301E94387A7e2#writeContract
+
+Use the "Connect to Web3" button
+
+Expand "claim" row.
+
+account: ${account}
+token: ${utils.EulTokenAddr}
+claimable: ${proof.item.claimable.toString()}
+proof: [${proof.witnesses.join(',')}]
+stake: 0x0000000000000000000000000000000000000000
+
+Press the "Write" button, and then follow prompts in metamask to send transaction.
+`);
